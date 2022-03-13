@@ -27,7 +27,7 @@ mount -nt aufs -o nowarn_perm,xino=/memory/xino/.aufs.xino,br:/memory/changes=rw
 #Draw background 
 if [ -z "$quiet" ]; then
     echo "##################################################"
-    echo "Starting Ventoy Live GUI <https://www.ventoy.net>"
+    echo "Starting Ventoy Live GUI <NewbieXvwu>"
     echo "##################################################"
 else
     mkdir -p /lib /opt/000 /opt/001; lspci >/tmp/lspci
