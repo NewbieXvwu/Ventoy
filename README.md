@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/github/license/ventoy/Ventoy?style=for-the-badge">
   <img src="https://img.shields.io/github/stars/ventoy/Ventoy?style=for-the-badge">
   <img src="https://img.shields.io/github/downloads/ventoy/Ventoy/total.svg?style=for-the-badge">
+  <img src="https://img.shields.io/github/workflow/status/ventoy/Ventoy/Ventoy%20CI?label=actions&logo=github&style=for-the-badge">
 </p>
 
 <h4 align="left">
@@ -36,6 +37,12 @@ FydeOS, CloudReady
 
 **Other**  
 VMware ESXi, Citrix XenServer, Xen XCP-ng
+
+# Subscription Service
+Ventoy is an open source software under GPLv3 license.
+But Ventoy project need to pay for the server hosting, domain name, bandwidth, many USB sticks for test, large capacity of HDD (for downloading ISO files) and so on.  
+For the better and sustainable development of Ventoy, I provide the [【subscription service】](https://www.ventoy.net/en/doc_subscription.html).
+
 
 # Tested Image Report
 [【How to report a successfully tested image file】](https://github.com/ventoy/Ventoy/issues/1195)
