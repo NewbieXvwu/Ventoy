@@ -172,9 +172,9 @@ grub_mouse_getkey (struct grub_term_input *term)
         return 0x0d;
       if (cur.right)
         return GRUB_TERM_ESC;
-      if (y > 20000)
+      if (y > 5000)
         return GRUB_TERM_KEY_DOWN;
-      if (y < -20000)
+      if (y < -5000)
         return GRUB_TERM_KEY_UP;
     }
   }
