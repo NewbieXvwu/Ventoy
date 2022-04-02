@@ -23,6 +23,7 @@
 #include <grub/command.h>
 #include <grub/i18n.h>
 #include <grub/err.h>
+#include <grub/env.h>
 #include <grub/efi/efi.h>
 #include <grub/efi/api.h>
 
@@ -110,13 +111,14 @@ grub_efi_mouse_prot_init (void)
 
   mouse_input = grub_malloc (sizeof (grub_efi_mouse_prot_t));
   if (!mouse_input)
-    return NULL;
+    goto end;
   mouse_input->mouse = grub_malloc (count
             * sizeof (grub_efi_simple_pointer_protocol_t *));
   if (!mouse_input->mouse)
   {
     grub_free (mouse_input);
-    return NULL;
+    mouse_input = NULL;
+    goto end;
   }
   mouse_input->count = count;
   for (i = 0; i < count; i++)
@@ -134,6 +136,10 @@ grub_efi_mouse_prot_init (void)
        mouse_input->mouse[i]->mode->y, mouse_input->mouse[i]->mode->z);
 #endif
   }
+  
+end:  
+  efi_call_1(b->free_pool, buf);
+
   return mouse_input;
 }
 
@@ -159,9 +165,16 @@ grub_mouse_getkey (struct grub_term_input *term)
   grub_efi_mouse_prot_t *mouse = term->data;
   //int x;
   int y;
+  int delta = 0;
+  const char *env;
   grub_efi_uintn_t i;
   if (!mouse)
     return GRUB_TERM_NO_KEY;
+
+  env = grub_env_get("mouse_delta");
+  if (env)
+    delta = (int)grub_strtol(env, NULL, 10);
+  
   for (i = 0; i < mouse->count; i++)
   {
     efi_call_2 (mouse->mouse[i]->get_state, mouse->mouse[i], &cur);
@@ -172,9 +185,9 @@ grub_mouse_getkey (struct grub_term_input *term)
         return 0x0d;
       if (cur.right)
         return GRUB_TERM_ESC;
-      if (y > 30000)
+      if (y > delta)
         return GRUB_TERM_KEY_DOWN;
-      if (y < -30000)
+      if (y < -delta)
         return GRUB_TERM_KEY_UP;
     }
   }
