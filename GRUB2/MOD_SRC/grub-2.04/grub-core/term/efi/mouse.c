@@ -165,7 +165,7 @@ grub_mouse_getkey (struct grub_term_input *term)
   grub_efi_mouse_prot_t *mouse = term->data;
   //int x;
   int y;
-  int delta = 0;
+  int delta = 30000;
   const char *env;
   grub_efi_uintn_t i;
   if (!mouse)
