@@ -5,9 +5,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  release:
-     types:
-       - published
   
   workflow_dispatch:
 
@@ -15,32 +12,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out
-      uses: actions/checkout@v2
-    - name: Build Ventoy
+    - uses: actions/checkout@v2
+    - name: Run docker-compose up
       run: docker-compose up
-    - name: Upload Windows Build
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
         name: ventoy-windows
         path: INSTALL/ventoy-*windows*
-    - name: Upload Linux Build
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
         name: ventoy-linux
         path: INSTALL/ventoy-*linux*
-    - name: Upload LiveCD
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
         name: ventoy-livecd
         path: INSTALL/ventoy-*livecd*
-    - name: Upload SHA256 CheckSum
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
         name: SHA256SUM
         path: INSTALL/sha256.txt
-    - name: Upload Build Log
-      uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v2
       with:
         name: xxx-build-log
         path: DOC/build.log
