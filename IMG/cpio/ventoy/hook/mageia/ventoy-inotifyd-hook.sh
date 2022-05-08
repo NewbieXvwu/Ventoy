@@ -59,7 +59,11 @@ if is_inotify_ventoy_part $3; then
         $BUSYBOX_PATH/cp -a $BUSYBOX_PATH/blkid /sbin/blkid
         $BUSYBOX_PATH/mkdir -p /dev/mapper
         ln -s /dev/$vtDM  /dev/mapper/ventoy     
+<<<<<<< HEAD
         /sbin/mgalive-root /dev/dm-0    
+=======
+        /sbin/mgalive-root /dev/$vtDM
+>>>>>>> 121d9273673121660add677de3231559c2ffd31d
     fi
     
     set_ventoy_hook_finish

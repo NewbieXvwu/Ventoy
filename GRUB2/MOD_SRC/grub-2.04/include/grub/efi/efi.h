@@ -88,7 +88,11 @@ EXPORT_FUNC (grub_efi_compare_device_paths) (const grub_efi_device_path_t *dp1,
 
 void * EXPORT_FUNC (grub_efi_allocate_iso_buf) (grub_uint64_t size);
 void * EXPORT_FUNC (grub_efi_allocate_chain_buf) (grub_uint64_t size);
+<<<<<<< HEAD
 
+=======
+void EXPORT_FUNC (grub_efi_get_reserved_page_num) (grub_uint64_t *total, grub_uint64_t *org_required, grub_uint64_t *new_required);
+>>>>>>> 121d9273673121660add677de3231559c2ffd31d
 
 extern void (*EXPORT_VAR(grub_efi_net_config)) (grub_efi_handle_t hnd, 
 						char **device,
